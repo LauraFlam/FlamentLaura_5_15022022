@@ -63,4 +63,18 @@ for(let i=0; i< tableauProducts.length; i++){
     totalItems.innerHTML = quantityTotal;
     totalPrice.innerHTML = montantTotal;
 
+    //Supprimer un produit 
+    function removeItem() {
+        let removeButton = document.querySelectorAll(".deleteItem");
+        for (let i = 0; i < removeButton.length; i++){
+            removeButton[i].addEventListener("click", () => {
+            tableauProducts.splice(i, 1);
+            localStorage.setItem("product",JSON.stringify(tableauProducts));
+            location.reload();
+        })
+        }
+    }
+    removeItem();
 }
+
+getCart();
