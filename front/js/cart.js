@@ -18,7 +18,8 @@ let tableauProducts = JSON.parse(localStorage.getItem("product"));
 console.log(tableauProducts);
 
 let cartItems = document.getElementById("cart__items");
-
+let montantTotal = 0;
+let quantityTotal = 0;
 for(let i=0; i< tableauProducts.length; i++){
     let imageProduct;
     let altTxtProduct;
@@ -54,9 +55,12 @@ for(let i=0; i< tableauProducts.length; i++){
     `</div>` +
     `</div>` +
     `</article> `;
-    
+    montantTotal += tableauProducts[i].quantityProduct * priceProduct;
+    quantityTotal += parseInt(tableauProducts[i].quantityProduct);
     }
-    
-}
+    let totalItems = document.getElementById("totalQuantity");
+    let totalPrice = document.getElementById("totalPrice");
+    totalItems.innerHTML = quantityTotal;
+    totalPrice.innerHTML = montantTotal;
 
-getCart();
+}
