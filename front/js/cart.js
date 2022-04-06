@@ -75,6 +75,31 @@ for(let i=0; i< tableauProducts.length; i++){
         }
     }
     removeItem();
+
+    //Changer la quantité d'un produit
+    function changeQuantity() {
+        let itemQuantity = document.querySelectorAll(".itemQuantity");
+        for (let i = 0; i < itemQuantity.length; i++){
+            itemQuantity[i].addEventListener("change", () => {
+
+          if (itemQuantity[i].value <= 0) {
+            itemQuantity[i].value = 0;
+            tableauProducts.splice(i, 1);
+            } 
+		    else if (itemQuantity[i].value > 100) {
+            itemQuantity[i].value = 100;
+            tableauProducts[i].quantityProduct = 100;
+            } 
+
+		    else {
+            tableauProducts[i].quantityProduct = itemQuantity[i].value;
+            }
+          localStorage.setItem("product", JSON.stringify(tableauProducts));
+          location.reload();
+            })
+        }
+        }
+    changeQuantity();
 }
 
 getCart();
