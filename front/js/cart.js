@@ -106,6 +106,7 @@ for(let i=0; i< tableauProducts.length; i++){
 getCart();
 
 //Formulaire
+function sendForm() {
 let form = document.querySelector(".cart__order__form");
 let emailRegEx = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-z]+[.]{1}[a-z]+$');
 let otherRegEx = new RegExp("^[a-zA-Z ,.'-]+$");
@@ -186,3 +187,47 @@ let validCity = function (inputCity) {
     }
 };
 
+form.addEventListener("submit", function (element) {
+  element.preventDefault()
+  if (validFirstName && validLastName && validAddress && validCity && validEmail) {
+
+      let contactFirstName = document.getElementById("firstName").value;
+      let contactLastName = document.getElementById("lastName").value;
+      let contactAddress = document.getElementById("address").value;
+      let contactCity = document.getElementById("city").value;
+      let contactEmail = document.getElementById("email").value;
+      contact = {
+          firstName: contactFirstName,
+          lastName: contactLastName,
+          address: contactAddress,
+          city: contactCity,
+          email: contactEmail,
+      }
+      
+      let data = JSON.parse(localStorage.getItem("product"))._id || [];
+        let order = {contact:contact,products:data};
+        const options = {
+            method: "POST",
+            body: JSON.stringify(order),
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          };
+        fetch("http://localhost:3000/api/products/order", options)
+        .then ((result) => result.json())
+        .then (function(dataOrder){
+            window.location.href="confirmation.html?id="+ dataOrder.orderId;
+            localStorage.setItem("orderId", dataOrder.orderId);
+        }).catch(function(error){
+            console.log(error);
+        })
+      /*
+      localStorage.setItem("contact", JSON.stringify(contact));
+      window.location.assign("confirmation.html")
+      */
+  }
+})
+}
+
+sendForm();
