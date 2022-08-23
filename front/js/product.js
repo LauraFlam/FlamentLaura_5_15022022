@@ -51,7 +51,8 @@ addToCart.addEventListener("click", function cart() {
     let tableauProducts = [];
     if (localStorage.getItem("product") != null) {
         tableauProducts = JSON.parse(localStorage.getItem("product"));
-
+        
+        //Si on ajoute un produit identique à un prduit déjà présent dans le panier (même nom et même couleur), seulement la quantité sera modifié
         for (let i = 0; i < tableauProducts.length; i++) {
             if (tableauProducts[i].nameProduct == product.nameProduct &&
                 tableauProducts[i].colorProduct == product.colorProduct) {

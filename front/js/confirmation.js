@@ -1,3 +1,4 @@
+//Fonction permettant d'obtenir le numéro de commande
 function orderNumber() {
 
   const orderId = document.getElementById("orderId")

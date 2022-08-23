@@ -16,7 +16,7 @@ async function main() {
     let sectionItems = document.getElementById("items");
     for (let product of listProduit) {
         console.log(product.name);
-        // Dispatcher les données de chaque produit (prix, nom...) dans le DOM
+        // Répartir les données de chaque produit dans le DOM
         sectionItems.innerHTML += `<a href="./product.html?id=${product._id}">` +
             `<article>` +
             `<img src="${product.imageUrl}" alt="${product.altTxt}">` +

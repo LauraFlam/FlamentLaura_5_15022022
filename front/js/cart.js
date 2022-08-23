@@ -9,7 +9,7 @@ async function getProduct() {
     });
 }
 
-// Pour chaque produits dans le panier, on l'ajoute dans le DOM
+// Pour chaque produit dans le panier, on l'ajoute dans le DOM
 async function getCart() {
   let listProduit = await getProduct();
   console.log(listProduit);
@@ -64,7 +64,7 @@ async function getCart() {
   totalItems.innerHTML = quantityTotal;
   totalPrice.innerHTML = montantTotal;
 
-  //Supprimer un produit 
+  //Fonction du suppression d'un produit 
   function removeItem() {
     let removeButton = document.querySelectorAll(".deleteItem");
     for (let i = 0; i < removeButton.length; i++) {
@@ -77,7 +77,7 @@ async function getCart() {
   }
   removeItem();
 
-  //Changer la quantité d'un produit
+  //Fonction pour changer la quantité d'un produit
   function changeQuantity() {
     let itemQuantity = document.querySelectorAll(".itemQuantity");
     for (let i = 0; i < itemQuantity.length; i++) {
@@ -106,7 +106,7 @@ async function getCart() {
 
 getCart();
 
-//Formulaire
+//Fonction d'envoi du formulaire après que toutes les conditions soient verifiées et validées
 function sendForm() {
   let form = document.querySelector(".cart__order__form");
   let emailRegEx = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-z]+[.]{1}[a-z]+$');
